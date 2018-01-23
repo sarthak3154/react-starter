@@ -18,7 +18,7 @@ class App extends Component {
   }
 }
 
-class Square extends Component {
+/* class Square extends Component {
     render() {
         return (
             <button className="square" onClick={() => this.props.onClick()}>
@@ -26,6 +26,15 @@ class Square extends Component {
             </button>
         );
     }
+} */
+
+//Many components will be able to be written as functional componenets
+function Square(props) {
+    return (
+        <button className="square" onClick={props.onClick}>
+        {props.value}
+        </button>
+    );
 }
 
 class Board extends Component {
