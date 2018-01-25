@@ -73,6 +73,7 @@ class Game  extends Component {
             history: [
                 {
                     squares: Array(9).fill(null),
+                    last: -1,
                 }
             ],
             stepNumber: 0,
@@ -88,9 +89,12 @@ class Game  extends Component {
             return;
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
+        console.log(`i: ${i}`);
         this.setState({
             history: history.concat([{
-                squares: squares}]),
+                squares: squares,
+                last: i,
+            }]),
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
         });
@@ -113,10 +117,16 @@ class Game  extends Component {
             console.log('Move: ' + move);
             const desc = move ? 'Go to move #' + move :
             'Go to game start';
+            const currMove = history[move];
+            console.log(currMove);
+            var row = Math.floor(currMove.last / 3);
+            var col = Math.floor(currMove.last % 3);
+            var moveLocation = move ? `(${row}, ${col})` : '';
             return (
                 // If key is not mentioned, it will give a warning. Its recommended to assign proper keys whenever building dynamic lists.
                 <li className="move-list-item" key={move}>
                 <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                <div>{moveLocation}</div>
                 </li>
             )
         })
