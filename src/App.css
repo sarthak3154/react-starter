@@ -80,4 +80,20 @@ ol, ul {
 
 .move-list-item {
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.triangle-right {
+	width: 0;
+    align-self: center;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-left: 10px solid black;
+    margin-right: 5px;
+	border-bottom: 5px solid transparent;
+}
+
+.triangle-invisible {
+    
 }

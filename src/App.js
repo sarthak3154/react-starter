@@ -114,17 +114,20 @@ class Game  extends Component {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
-            console.log('Move: ' + move);
+            console.log(`Move: ${move}\nStep Number: ${this.state.stepNumber}`);
+
             const desc = move ? 'Go to move #' + move :
             'Go to game start';
             const currMove = history[move];
-            console.log(currMove);
-            var row = Math.floor(currMove.last / 3);
-            var col = Math.floor(currMove.last % 3);
-            var moveLocation = move ? `(${row}, ${col})` : '';
+            let row = Math.floor(currMove.last / 3);
+            let col = Math.floor(currMove.last % 3);
+            let moveLocation = move ? `(${row}, ${col})` : '';
+            let num = (move+1) / (this.state.stepNumber+1);
+            let classname = (num === 1) ? 'triangle-right' : '';
             return (
                 // If key is not mentioned, it will give a warning. Its recommended to assign proper keys whenever building dynamic lists.
                 <li className="move-list-item" key={move}>
+                <div className={classname}></div>
                 <button onClick={() => this.jumpTo(move)}>{desc}</button>
                 <div>{moveLocation}</div>
                 </li>
